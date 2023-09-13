@@ -1,0 +1,142 @@
+---
+title: "W2_data_prep_lab"
+author: "Miao Li"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+<span style="color:blue"><font size="4"> FYI, a friend once said:</font> </span>
+
+> This task is <span style="color:red">__NOT__</span> as difficult 
+> as figuring out why $E=mc^2$.
+
+## I. The following codes load the necessary packages for this task 
+
+```{r load package, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
+library(readxl)
+library(tidyverse)
+library(labelled)
+library(DT) 
+```
+NOTE: You will first install these packages before loading them using the `library()` function. You can use the following functions to install these packages:
+ `install.packages("readxl")`
+ `install.packages("labelled")`
+ `install.packages("data.table")`
+ `install.packages("tidyverse")`
+
+## II. Read in Data
+
+* You need to specify your own directory leading to your data file
+* Note that in the directory the slashes are forward, __NOT__ backward!
+* You can also take a quick peek at the first few rows of the data using the function `head()`
+
+```{r echo=TRUE}
+mysurvey <- read_excel("C:/Users/miaol/OneDrive - Clemson University/My Teaching/Clemson/SSCI_8010/Example_data/Survey_results.xlsx")    
+head(mysurvey)    
+
+```
+
+## III. Rename the variables and give them labels
+
+* The current variable names are too long (they are the original survey questions asked)! 
+```{r}
+names(mysurvey)  
+# this function allows you to take a look at the current variable names. 
+# Indeed, they are LOOOOOOOOOOOONG!
+```
+
+* rename them with shorter names (Rule of Thumb: 8 letters or less)
+* and create an ID variable with the name "ID"
+* then peek your data again. see what has changed.
+```{r}
+names(mysurvey) <- c("belief", "gender", "age", "reliattend", "belief12","alcohol","presex","homosex","polaffi")
+mysurvey <- rowid_to_column(mysurvey, "ID")
+head(mysurvey)
+```
+* Shorter names mean convenience, but with loss of information.
+* Create a label for each variable to document what the variable is about
+```{r}
+var_label(mysurvey) <- list(
+  ID         = "Individual ID",
+  belief     = "Are you a Christian?",
+  gender     = "What is your sex?",
+  age        = "How old are you?",
+  reliattend = "How often do you go to a church?",
+  belief12   = "Were you a Christian when you were 12 years old?",
+  alcohol    = "Largest number of drinks in one occasion in the past 30 days",
+  presex     = "How much agree with ‘premarital sex is always wrong'?",
+  homosex    = "How much agree with same-sex marriage?",
+  polaffi    = "Political affiliation: Rep, Demo, or Ind?"
+)
+```
+
+* if you want to know what change has been done, you can go back to RStudio and type in the function ```View()``` to get a tabular view of the data set (i.e., like what you would see in Excel)
+* you will see that under each variable name there is a label with detailed info about what this variable is about
+```{r}
+datatable(mysurvey)
+```
+
+## IV. Clean the Data
+The following chunk of code does three things:  \
+1. Re-order the levels for the ordinal-level variable "`reliattend`", which is stored in R as a [factor variable](https://towardsdatascience.com/introduction-to-factors-in-r-dd752f732c94)  \
+2. Re-code the value "`Not Sure`" for the variable "`belief`" in to missing values \
+3. Generate a numeric version of the ordinal variable "`reliattend`", name it as "`attend`" \
+__NOTE:__ The code completed all three tasks in one pipeline. The pipe operator sign `%>%` represents the link of the pipe. It tells R that the command is not finished yet and the next step is based on the previous step. Read more [here](https://style.tidyverse.org/pipes.html).
+```{r}
+mysurvey <-  mysurvey %>%
+  mutate_if(is.character, as.factor) %>% 
+  mutate(reliattend = factor(reliattend, levels = c("Rarely or never", "Less than monthly", "Monthly but not weekly", "Weekly or more"))) %>% 
+  mutate(belief = fct_recode(belief, NULL = "Not Sure")) %>% 
+  mutate(attend = as.numeric(reliattend)) 
+var_label(mysurvey$attend) <- "Religious attendance (numeric)"
+```
+
+* label values of the new variable `attend` as well as the numeric variables `presex` and `homosex`
+```{r}
+val_labels(mysurvey$attend) <- c("Rarely or never"   =1, 
+                                "less than monthly"  =2, 
+                                "monthly not weekly" =3, 
+                                "weekly or more"     =4) 
+val_labels(mysurvey[,c("presex","homosex")]) <- c("strongly disagree" =1,
+                                                  disagree            =2,
+                                                  neutral             =3,
+                                                  agree               =4,
+                                                  "strongly agree"    =5)
+```
+
+* then check the labels
+
+```{r, echo=TRUE}
+options(width = 300) #this is to set the page width wider
+val_labels(mysurvey[,c("attend", "presex","homosex")])
+```
+
+* lastly, create a new variable for binge drinking 
+* (definition of binge drinking: >=4 drinks/occasion for female, >=5 drinks/occasion for male)
+* label the variable with appropriate info
+
+```{r}
+mysurvey <- mysurvey %>% 
+  mutate(binge = case_when(
+    alcohol>=4 & gender=="Female" & !is.na(alcohol) ~ 1,
+    alcohol>=5 & gender=="Male"   & !is.na(alcohol) ~ 1,
+    alcohol<4  & gender=="Female"                   ~ 0,
+    alcohol<5  & gender=="Male"                     ~ 0)
+    )
+var_label(mysurvey$binge) <- "Binge drinking"
+val_labels(mysurvey$binge) <- c(yes=1, no=0)
+head(mysurvey$binge)
+```
+
+## V. Construct a data dictionary 
+* A data dictionary includes the meta-data of the data set
+* Save the dictionary into a different data frame and name it as `dat_dic`
+
+```{r}
+dat_dic <- lookfor(mysurvey)  
+datatable(dat_dic)
+```
