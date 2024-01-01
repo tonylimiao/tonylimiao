@@ -1,0 +1,47 @@
+---
+title: "Welcome"
+#author: "Miao Li"
+#date: "2024-01-01"
+ 
+
+output: html_document
+---
+
+<style type="text/css">
+.title {
+  display: none;
+}
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
+
+<div class="row" style="padding-top: 30px;">
+<div class="col-sm-6">
+
+# **SOC 3020 Research Methods I**
+
+Welcome to the Methods Course. I will use this website to distribute R codes.
+
+## How to use
+
+1. see my introduction [here](https://github.com/CrumpLab/LabJournalWebsite).
+
+2. Blog/journal what you are doing in R, by editing the Journal.Rmd. See the [Journal page](https://crumplab.github.io/LabJournalWebsite/Journal.html) for an example of what to do to get started learning R.
+
+3. See the [links page](https://crumplab.github.io/LabJournalWebsite/Links.html) for lots of helpful links on learning R.
+
+4. Change everything to make it your own.
+
+
+</div>
+<div class="col-sm-6">
+
+### [Crump Lab: Human Cognition and Performance](https://crumplab.github.io)
+
+<a href = "https://crumplab.github.io">
+![](images/logo.png)
+</a>
+</div>

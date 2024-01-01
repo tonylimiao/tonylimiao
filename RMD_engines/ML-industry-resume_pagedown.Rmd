@@ -1,0 +1,220 @@
+---
+title: "About Me"
+author: Miao Li
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume: 
+    #css: style.css
+    self_contained: true 
+ 
+---
+ 
+
+
+Aside
+================================================================================
+
+&nbsp; Contact Info {#contact}
+--------------------------------------------------------------------------------
+
+- <i class="fa fa-envelope"></i> miaol@clemson.edu
+- <i class="fa fa-address-card-o"></i> 135A Brackett Hall, Clemson SC 29634
+- <i class="fas fa-phone"></i> +1 765 586 5456
+
+
+<i class="fa fa-language"></i> Languages {#languages}
+--------------------------------------------------------------------------------
+
+- English; Chinese
+
+
+<i class="fa fa-code"></i> Programming {#skills1}
+--------------------------------------------------------------------------------
+
+- R, Python, Stata, SPSS, R markdown, Mplus, MySQL 
+ 
+
+<i class="fas fa-chart-pie"></i> Data analysis {#skills2}
+--------------------------------------------------------------------------------
+
+* Generalized Linear models  
+* Hierarchical/Longitudinal models
+* Model selection and regularization (e.g., BSS, LASSO, PCA, etc.)
+* Ensemble methods (e.g., Random forests)
+* Data visualization (e.g., ggplot2, Tableau)
+
+
+<i class="fas fa-book-open"></i> Research skills {#skills3}
+--------------------------------------------------------------------------------
+
+- Literature review; Survey design; Experimental design; Writing
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+
+
+Last updated: `r gsub(" +", " ", format(Sys.Date(), "%B %e, %Y"))`
+
+
+
+
+
+Main
+================================================================================
+
+Miao Li  {#title}
+--------------------------------------------------------------------------------
+
+
+Experience {data-icon=suitcase data-concise=true}
+--------------------------------------------------------------------------------
+
+
+### Assistant Professor
+
+Clemson University
+
+&nbsp; <!-- placeholder -->
+
+2023 - 2018
+
+::: concise
+- Design, conduct, and analyze surveys
+- Write grant proposals for funding
+- Communicate results in reports, papers, and presentations
+- Team building and project management
+- Develop and implement teaching/mentoring strategies 
+- Supervise and mentor undergraduate and graduate students
+- Edit research projects while providing constructive feedback
+- Co-design the curriculum for the interdisciplinary Master's Program
+- Co-design the interdisciplinary PhD program
+:::
+
+### Faculty Affiliate
+
+China National Survey Research Center
+
+&nbsp; <!-- placeholder -->
+
+2023 - 2016
+
+::: concise
+- Design, conduct, and analyse surveys
+- Manage survey and data analysis teams
+- Initiate and shepherd international collaborative projects
+- Communicate results in reports, papers, and presentations
+:::
+
+### Research Fellow
+
+University of Notre Dame
+
+&nbsp; <!-- placeholder -->
+
+2018 - 2016
+
+::: concise
+- Project and team management
+- Design, conduct, and analyze surveys
+- Communicate results in reports, papers, and presentations
+- Organize conferences and events
+:::  
+
+
+### Research Fellow
+
+University at Buffalo, SUNY
+
+&nbsp; <!-- placeholder -->
+
+2016 - 2015
+
+::: concise
+- Project and team management
+- Analyze survey data
+- Communicate results in reports, books, papers, and talks
+- Lead, supervise, and mentor a multidisciplinary team of graduate students and research scientists
+:::  
+
+
+### Program Director
+
+China Executive Leadership Academy, Pudong
+
+&nbsp; <!-- placeholder -->
+
+2008 - 2006
+
+::: concise
+- Design and implement training programs
+- Inter-departmental coordination for successful program execution 
+:::  
+
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+### Purdue University, West Lafayette 
+
+Ph.D. in Sociology
+
+&nbsp; <!-- placeholder -->
+
+2015 - 2010
+
+::: concise
+- Lead and manage the religion mapping project funded by the Henry Luce Foundation  
+- Design and deliver Summer Camp on Spatial Analysis
+- Teach introductory course 
+:::  
+
+
+Training and Teaching Skills {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+### Social Science Research Design
+
+Undergraduate level course taught at Clemson University
+
+&nbsp; <!-- placeholder -->
+
+### Quantitative Research Methods: With application in Stata
+
+Graduate level course taught at Clemson University
+
+&nbsp; <!-- placeholder -->
+
+
+### Introduction to Multilevel Modeling: With application in R
+
+Advanced graduate level online course taught at Wuhan University (China)
+
+&nbsp; <!-- placeholder -->
+ 
+
+### Introduction to Geospatial Data Analysis: With application in ArcGIS, Geoda, and R
+
+Advanced graduate level training camp taught at Purdue University, West Lafayette 
+
+&nbsp; <!-- placeholder -->
+
+
+
+ 
+
+ 
+ 
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+ 
+
+Last updated: `r gsub(" +", " ", format(Sys.Date(), "%B %e, %Y"))`
+
+
+ 
